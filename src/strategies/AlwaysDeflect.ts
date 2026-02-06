@@ -1,12 +1,12 @@
 import { Strategy, Action } from '../core/Strategy';
 
-export class AlwaysCooperate implements Strategy {
-    name = 'Always Cooperate';
+export class AlwaysDeflect implements Strategy {
+    name = 'Always Deflect';
 
     reset(): void {};
 
     nextMove(opponentHistory: Action[]): Action {
-        return 'C';
+        return 'D';
     }
 
 }

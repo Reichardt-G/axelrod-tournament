@@ -1,21 +1,16 @@
-import { AlwaysCooperate } from './strategies/AlwaysCooperate';
-import { AlwaysDeflect } from './strategies/AlwaysDeflect';
+import { Match } from './core/Match';
+import { strategies } from './strategies/index';
 
-const strategyA = new AlwaysCooperate();
-const strategyB = new AlwaysDeflect();
+const PlayerA = strategies[0];
+const PlayerB = strategies[1];
 
-console.log(`StrategyA loaded: ${strategyA.name}`);
-console.log(`StrategyB loaded: ${strategyB.name}`);
-console.log(`First move StrA: ${strategyA.nextMove([])}`);
-console.log(`First move StrB: ${strategyB.nextMove([])}`);  
+if (PlayerA === undefined) throw new Error ('PlayerA is undefined!');
+if (PlayerB === undefined) throw new Error ('PlayerB is undefined!');
 
-/*
-import { Tournament } from './core/Tournament';
-import { tournamentConfig } from './config/tournament.config';
-import { strategies } from './strategies';
+const newMatch = new Match(
+    new PlayerA(), 
+    new PlayerB(), 
+    3
+);
 
-const tournament = new Tournament(strategies, tournamentConfig);
-tournament.run();
-
-console.log(tournament.getResults());
-*/
+newMatch.play();

@@ -1,16 +1,22 @@
 import { Match } from './core/Match';
+import { Tournament } from './core/Tournament';
+import { AlwaysCooperate } from './strategies/AlwaysCooperate';
+import { AlwaysDeflect } from './strategies/AlwaysDeflect';
 import { strategies } from './strategies/index';
 
-const PlayerA = strategies[0];
-const PlayerB = strategies[1];
+/*
+const strategiesInstances = [
+    new AlwaysCooperate(),
+    new AlwaysDeflect()
+]
+*/
 
-if (PlayerA === undefined) throw new Error ('PlayerA is undefined!');
-if (PlayerB === undefined) throw new Error ('PlayerB is undefined!');
+// This will instantiate all the strategies and store them in an array, which will be passed to the tournament.
+let strategiesInstances = [];
+for (let strategyClass of strategies) {
+    strategiesInstances.push(new strategyClass());
+}
 
-const newMatch = new Match(
-    new PlayerA(), 
-    new PlayerB(), 
-    3
-);
+const tournament = new Tournament(strategiesInstances, 3, true);
+tournament.play();
 
-newMatch.play();

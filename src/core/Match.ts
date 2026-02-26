@@ -9,7 +9,7 @@ export class Match{
     ) {}
     
     play() {
-        console.log(`Playing now: ${this.playerA.name} x ${this.playerB.name} - FOR ${this.rounds} rounds`);
+        console.log(`\nPlaying now: ${this.playerA.name} x ${this.playerB.name} - FOR ${this.rounds} rounds`);
         
         let scoreA = 0;
         let scoreB = 0;
@@ -39,8 +39,7 @@ export class Match{
                 - Player "${this.playerA.name}" | played "${moveA === 'C' ? 'Cooperate' : 'Deflect'}" | scored "${roundScoreA}";
                 - Player "${this.playerB.name}" | played "${moveB === 'C' ? 'Cooperate' : 'Deflect'}" | scored "${roundScoreB}".`);
             */
-        }
-        console.log("\nMatch History:"); 
+        } 
         console.log(`["${this.playerA.name}" x "${this.playerB.name}"]:`);
         for (let i = 0; i < historyA.length && i < historyB.length; i++){
             console.log(`- Round ${i+1}: [${historyA[i]} x ${historyB[i]}]`);

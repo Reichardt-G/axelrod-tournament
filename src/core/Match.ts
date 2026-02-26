@@ -1,5 +1,6 @@
 import { Strategy } from "./Strategy";
 import { PayOffMatrix, Action } from "./PayOffMatrix";
+import { historyFromPreviousMatch, matchLogs, tournamentLogs } from "..";
 
 export class Match{
     constructor(
@@ -9,7 +10,12 @@ export class Match{
     ) {}
     
     play() {
-        console.log(`\nPlaying now: ${this.playerA.name} x ${this.playerB.name} - FOR ${this.rounds} rounds`);
+        if (matchLogs) {console.log(`\nPlaying now: ${this.playerA.name} x ${this.playerB.name} - FOR ${this.rounds} rounds`);}
+
+        if (!historyFromPreviousMatch) {
+            this.playerA.reset();
+            this.playerB.reset();
+        }
         
         let scoreA = 0;
         let scoreB = 0;
@@ -17,6 +23,9 @@ export class Match{
         // Each of the strategies must see the prior move of the other algorithm
         const historyA: Action[] = [];
         const historyB: Action[] = [];
+
+        const historyScoreA: number[] = [];
+        const historyScoreB: number[] = [];
         
         for (let i = 1; i <= this.rounds; i++) {
 
@@ -33,17 +42,18 @@ export class Match{
             scoreA = scoreA + roundScoreA;
             scoreB = scoreB + roundScoreB;
 
-            // This might be useful for debugging later with more strategies
-            /*
-            console.log(`=> ROUND ${i}:
-                - Player "${this.playerA.name}" | played "${moveA === 'C' ? 'Cooperate' : 'Deflect'}" | scored "${roundScoreA}";
-                - Player "${this.playerB.name}" | played "${moveB === 'C' ? 'Cooperate' : 'Deflect'}" | scored "${roundScoreB}".`);
-            */
+            historyScoreA.push(roundScoreA);
+            historyScoreB.push(roundScoreB);
         } 
-        console.log(`["${this.playerA.name}" x "${this.playerB.name}"]:`);
-        for (let i = 0; i < historyA.length && i < historyB.length; i++){
-            console.log(`- Round ${i+1}: [${historyA[i]} x ${historyB[i]}]`);
+
+        if (tournamentLogs || matchLogs) {
+            console.log(`["${this.playerA.name}" x "${this.playerB.name}"]:`);
+            if (matchLogs) {
+                for (let i = 0; i < historyA.length && i < historyB.length; i++){
+                    console.log(`- Round ${i+1}: [${historyA[i]} x ${historyB[i]}] - Scores: [${historyScoreA[i]} x ${historyScoreB[i]}]`);
+                }
+            }
+            console.log(`- Final Score: [${scoreA} x ${scoreB}]\n`);
         }
-        console.log(`- Final Score: [${scoreA} x ${scoreB}]`);
     }
 }

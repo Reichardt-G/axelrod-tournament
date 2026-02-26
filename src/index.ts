@@ -1,7 +1,4 @@
-import { Match } from './core/Match';
 import { Tournament } from './core/Tournament';
-import { AlwaysCooperate } from './strategies/AlwaysCooperate';
-import { AlwaysDeflect } from './strategies/AlwaysDeflect';
 import { strategies } from './strategies/index';
 
 /* 
@@ -21,6 +18,6 @@ for (let strategyClass of strategies) {
     strategiesInstances.push(new strategyClass());
 }
 
-const tournament = new Tournament(strategiesInstances, 3, true);
+const tournament = new Tournament(strategiesInstances, 5, true);
 tournament.play();
 

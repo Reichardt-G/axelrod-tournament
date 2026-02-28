@@ -1,4 +1,5 @@
 import { Match } from "./Match";
+import { MatchResult, TournamentResult } from "../stats/Result";
 import { Strategy } from "./Strategy";
 
 export class Tournament{
@@ -31,11 +32,19 @@ export class Tournament{
     }
 
     // Execution only
-    public play(): void {
+    public play(): [MatchResult[], TournamentResult[]] {
         const matches = this.scheduleMatches();
+        const matchResults: MatchResult[] = [];
+        const tournamentResults: TournamentResult[] = [];
 
         for (const match of matches) {
-            match.play();
+            // Playing the match and storing the result
+            matchResults.push(match.play());
+
+            // Updating the tournament results
+            
         }
+
+        return [matchResults, tournamentResults];
     }
 }

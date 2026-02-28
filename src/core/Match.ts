@@ -1,6 +1,6 @@
 import { Strategy } from "./Strategy";
 import { PayOffMatrix, Action } from "./PayOffMatrix";
-import { historyFromPreviousMatch, matchLogs, tournamentLogs } from "..";
+import { matchLogs, tournamentLogs } from "..";
 
 export class Match{
     constructor(
@@ -11,11 +11,6 @@ export class Match{
     
     play() {
         if (matchLogs) {console.log(`\nPlaying now: ${this.playerA.name} x ${this.playerB.name} - FOR ${this.rounds} rounds`);}
-
-        if (!historyFromPreviousMatch) {
-            this.playerA.reset();
-            this.playerB.reset();
-        }
         
         let scoreA = 0;
         let scoreB = 0;

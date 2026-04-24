@@ -18,3 +18,9 @@ export interface ScoreBoard {
     totalLosses: number;
     totalTies: number;
 }
+
+export interface SimplifiedScoreTable {
+    position: number;
+    playerName: string;
+    points: number;
+}

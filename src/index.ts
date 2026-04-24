@@ -8,8 +8,9 @@ for (let strategyClass of strategies) {
 }
 
 const tournament = new Tournament(strategiesInstances, 5, false);
-const [matchResults, tournamentRanking] = tournament.play();
+const [matchResults, tournamentRanking, simplifiedTournamentRanking] = tournament.play();
 
+/*
 let i = 1;
 console.log('Pringint Match Results ------------------------- \n');
 for (const result of matchResults) {
@@ -19,3 +20,10 @@ for (const result of matchResults) {
 
 console.log('Printing Tournament Ranking ------------------------- \n');
 console.log(JSON.stringify(tournamentRanking, null, 2));
+*/
+
+console.log('Printing Simplified Tournament Ranking ------------------------- \n');
+while (simplifiedTournamentRanking.length > 0) {
+    const player = simplifiedTournamentRanking.shift()!;
+    console.log(`#${player.position}: ${player.points} pts - ${player.playerName}`);
+}

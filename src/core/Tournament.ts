@@ -1,6 +1,7 @@
 import { Match } from "./Match";
-import { MatchResult, ScoreBoard } from "../stats/Result";
+import { MatchResult, ScoreBoard, SimplifiedScoreTable } from "../stats/Result";
 import { Strategy } from "./Strategy";
+import { create } from "node:domain";
 
 export class Tournament{
     constructor(
@@ -31,7 +32,7 @@ export class Tournament{
         return matches;
     }
 
-    private createRakingBoard(): ScoreBoard[] {
+    private createRankingBoard(): ScoreBoard[] {
         const blankScoreBoard: ScoreBoard[] = [];
 
         for (const strategy of this.strategies) {
@@ -47,11 +48,49 @@ export class Tournament{
         return blankScoreBoard;
     }
 
+    private createRankingTable(scoreboard: ScoreBoard[]): SimplifiedScoreTable[] {
+        const result: SimplifiedScoreTable[] = [];
+        let pos = 0;
+        let memoryScore: number | null = null;
+
+        const temp = scoreboard.map(player => ({
+            playerName: player.playerName,
+            points: player.totalScore
+        }));
+
+        while (temp.length > 0) {
+            let maxIndex = 0;
+
+            for (let i = 1; i < temp.length; i++) {
+                if (temp[i]!.points > temp[maxIndex]!.points) {
+                    maxIndex = i;
+                }
+            }
+
+            const best = temp[maxIndex]!;
+
+            if (memoryScore === null || memoryScore !== best.points) {
+                pos++;
+            }
+
+            result.push({
+                position: pos,
+                playerName: best.playerName,
+                points: best.points
+            });
+
+            memoryScore = best.points;
+            temp.splice(maxIndex, 1);
+        }
+
+        return result;
+    }
+
     // Execution only
-    public play(): [MatchResult[], ScoreBoard[]] {
+    public play(): [MatchResult[], ScoreBoard[], SimplifiedScoreTable[]] {
         const matches = this.scheduleMatches();
         const matchResults: MatchResult[] = [];
-        const tournamentResults = this.createRakingBoard();
+        const tournamentResults = this.createRankingBoard();
 
         for (const match of matches) {
             // Playing the match and storing the result
@@ -98,6 +137,6 @@ export class Tournament{
             }
         }
 
-        return [matchResults, tournamentResults];
+        return [matchResults, tournamentResults, this.createRankingTable(tournamentResults)];
     }
 }

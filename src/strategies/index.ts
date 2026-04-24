@@ -1,9 +1,9 @@
 import { AlwaysCooperate } from './AlwaysCooperate';
-import { AlwaysDeflect } from './AlwaysDeflect';
+import { AlwaysDefect } from './AlwaysDefect';
 import { TitForTat } from './TitForTat';
 
 export const strategies = [
     AlwaysCooperate,
-    AlwaysDeflect,
+    AlwaysDefect,
     TitForTat
 ];

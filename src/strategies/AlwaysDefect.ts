@@ -1,6 +1,6 @@
 import { Strategy, Action } from '../core/Strategy';
 
-export class AlwaysDeflect implements Strategy {
+export class AlwaysDefect implements Strategy {
     name = 'Always Deflect';
 
     reset(): void {};

@@ -11,7 +11,7 @@ export interface MatchResult {
     scoreHistoryB: number[];
 }
 
-export interface TournamentResult {
+export interface ScoreBoard {
     playerName: string;
     totalScore: number;
     totalWins: number;

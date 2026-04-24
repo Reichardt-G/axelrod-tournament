@@ -11,7 +11,11 @@ const tournament = new Tournament(strategiesInstances, 5, false);
 const [matchResults, tournamentRanking] = tournament.play();
 
 let i = 1;
+console.log('Pringint Match Results ------------------------- \n');
 for (const result of matchResults) {
     console.log(`Match ${i++}: \n${result.playerAName} (${result.scoreA}) x ${result.playerBName} (${result.scoreB})`);
     console.log('');
 }
+
+console.log('Printing Tournament Ranking ------------------------- \n');
+console.log(tournamentRanking);

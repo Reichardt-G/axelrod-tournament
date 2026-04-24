@@ -18,4 +18,4 @@ for (const result of matchResults) {
 }
 
 console.log('Printing Tournament Ranking ------------------------- \n');
-console.log(tournamentRanking);
+console.log(JSON.stringify(tournamentRanking, null, 2));

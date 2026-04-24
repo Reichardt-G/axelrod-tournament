@@ -14,6 +14,9 @@ export class Match{
         let scoreA = 0;
         let scoreB = 0;
 
+        this.playerA.reset();
+        this.playerB.reset();
+
         // Each of the strategies must see the prior move of the other algorithm
         const historyA: Action[] = [];
         const historyB: Action[] = [];

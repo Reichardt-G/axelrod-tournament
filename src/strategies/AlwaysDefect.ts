@@ -1,7 +1,7 @@
 import { Strategy, Action } from '../core/Strategy';
 
 export class AlwaysDefect implements Strategy {
-    name = 'Always Deflect';
+    name = 'Always Defect';
 
     reset(): void {};
 

@@ -3,6 +3,9 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
+    
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
 
     // File Layout
     // "rootDir": "./src",

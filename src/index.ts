@@ -1,5 +1,9 @@
 import { Tournament } from './core/Tournament';
 import { strategies } from './strategies/index';
+import { initializeDatabase } from './database/Database';
+import { saveTournamentResults } from './database/TournamentExporter';
+
+//initializeDatabase();
 
 // This will instantiate all the strategies and store them in an array, which will be passed to the tournament.
 let strategiesInstances = [];
@@ -27,3 +31,5 @@ while (simplifiedTournamentRanking.length > 0) {
     const player = simplifiedTournamentRanking.shift()!;
     console.log(`#${player.position}: ${player.points} pts - ${player.playerName}`);
 }
+
+saveTournamentResults(matchResults, simplifiedTournamentRanking);

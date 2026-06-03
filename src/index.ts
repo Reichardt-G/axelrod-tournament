@@ -26,10 +26,10 @@ console.log('Printing Tournament Ranking ------------------------- \n');
 console.log(JSON.stringify(tournamentRanking, null, 2));
 */
 
+saveTournamentResults(matchResults, simplifiedTournamentRanking);
+
 console.log('Printing Simplified Tournament Ranking ------------------------- \n');
 while (simplifiedTournamentRanking.length > 0) {
     const player = simplifiedTournamentRanking.shift()!;
     console.log(`#${player.position}: ${player.points} pts - ${player.playerName}`);
 }
-
-saveTournamentResults(matchResults, simplifiedTournamentRanking);

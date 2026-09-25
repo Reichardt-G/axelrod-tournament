@@ -1,5 +1,5 @@
 # AXELROD TOURNAMENT 
-Created by: Guilherme Reichardt in 2026
+Created by Guilherme Reichardt in 2026.
 
 # History (what motivated this project)
 In 1980, Robert Axelrod, professor of political science at the University of 

@@ -11,7 +11,7 @@ for (let strategyClass of strategies) {
     strategiesInstances.push(new strategyClass());
 }
 
-const tournament = new Tournament(strategiesInstances, 5, false);
+const tournament = new Tournament(strategiesInstances, 20, false);
 const [matchResults, tournamentRanking, simplifiedTournamentRanking] = tournament.play();
 
 /*

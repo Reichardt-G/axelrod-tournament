@@ -8,6 +8,8 @@ import Database from "better-sqlite3";
 
 export const db: Database.Database = new Database("tournament.db");
 
+db.pragma("foreign_keys = ON"); //foreign keys are off by default, so this is needed.
+
 function isDatabaseInitialized(): boolean {
     
     const tournamentsTable = db.prepare(

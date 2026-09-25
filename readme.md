@@ -17,3 +17,8 @@ in which individuals are able to thrive collectively.
 # How to run
 I have added a 'start' script to 'package.json', so you just need to hit the main folder with this command "npm start" It will automatically search and execute 
 the 'src/index.ts' script, which is responsible for organizing the tournament and calling all the necessary components.
+
+# Dependencies (database)
+npm install sqlite3
+npm install sqlite
+npm install --save-dev @types/better-sqlite3
